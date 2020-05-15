@@ -1,0 +1,53 @@
+    def __init__(self, phrase):
+        
+        self.phrase = phrase.lower()
+    
+    def is_phrase_in(self, text):
+        
+        text = text.lower()
+        text = text.strip(string.punctuation)
+
+        phrase = self.phrase
+        phrase = phrase.strip(string.punctuation)
+        phrase_words = phrase.split()
+        
+        phrase_words_strip = []
+        for phrase_word in phrase_words:
+            phrase_words_strip.append(phrase_word.strip(string.punctuation))
+
+        text_words = text.split()        
+        text_words_strip =[]        
+        for text_word in  text_words:
+            text_words_strip.append(text_word.strip(string.punctuation))
+        
+        x = len(phrase_words_strip)
+        #phrase_check =[]
+        #for j in range(x):
+        #    phrase_check[j] = False
+        position =[]
+        for phrase_word in phrase_words_strip:
+            for i, word in enumerate(text_words_strip):
+                if phrase_word == word:
+                    print(word,i)
+                    position.append(i)
+                    print(position)
+            
+                    
+        found = True
+        print("*",len(phrase_words_strip))
+        print("*",len(position))
+        if len(position)>=len(phrase_words_strip):        
+            for n in range(len(position)-1):
+                    if position[n] == position[n+1]-1:
+                        found = True
+                        print("*",n,found)
+                    else:
+                        found = False
+                        print(n,found)
+                        break
+                    n=n+1
+        else:
+            found = False
+                     
+        return(found)
+
